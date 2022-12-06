@@ -7,7 +7,7 @@ on:
 
 jobs:
   preprod-deploy:
-    if: github.event.pull_request.merged == true && github.ref == 'refs/heads/prepod'
+    if: ${{ github.ref == 'refs/heads/preprod' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo The PR was merged
