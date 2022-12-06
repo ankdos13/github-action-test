@@ -1,7 +1,7 @@
 on:
   pull_request:
     types:
-      - closed
+      - pushed
     branches:
       - preprod
 
@@ -11,6 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo The PR was merged
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+      - run: ls ${{ github.workspace }}
