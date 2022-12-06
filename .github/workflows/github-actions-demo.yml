@@ -7,9 +7,10 @@ on:
 
 jobs:
   preprod-deploy:
+    if: ${{ github.ref == 'preprod' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo The PR was merged
       - name: List files in the repository
-        run: ls ${{ github.workspace }}
-      - run: echo ${{ github.ref }}
+        run: |
+          ls ${{ github.workspace }}
