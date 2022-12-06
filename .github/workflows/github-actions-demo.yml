@@ -4,6 +4,7 @@ on:
       - closed
     branches:
       - preprod
+      - main
 
 jobs:
   preprod-deploy:
@@ -11,5 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.ref}} 
-      - run: echo The PR was merged
+      - run: echo The PR was merged to preprod
+      - run: ls ${{ github.workspace }}
+  prod-deploy:
+    if: ${{ github.ref == 'main' && github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.ref}} 
+      - run: echo The PR was merged to master
       - run: ls ${{ github.workspace }}
