@@ -13,7 +13,7 @@ jobs:
     steps:
       - run: echo ${{ github.ref}} 
       - run: echo The PR was merged to preprod
-      - run: sh .${PWD}/deploy.sh
+      - run: sh ${PWD}/deploy.sh
   prod-deploy:
     if: ${{ github.ref == 'main' && github.event.pull_request.merged }}
     runs-on: ubuntu-latest
