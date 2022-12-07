@@ -3,17 +3,17 @@ on:
     types:
       - closed
     branches:
-      - preprod
+      - 'preprod_*'
       - main
 
 jobs:
   preprod-deploy:
-    if: ${{ github.ref == 'preprod' && github.event.pull_request.merged }}
+    if: ${{ startsWith(github.ref, 'preprod_')  && github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.ref}} 
       - run: echo The PR was merged to preprod
-      - run: ls ${{ github.workspace }}
+      - run: sh ./deploy.sh
   prod-deploy:
     if: ${{ github.ref == 'main' && github.event.pull_request.merged }}
     runs-on: ubuntu-latest
