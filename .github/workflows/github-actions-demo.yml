@@ -3,7 +3,7 @@ on:
     types:
       - closed
     branches:
-      - 'preprod_*'
+      - 'preprod*'
       - main
 
 jobs:
