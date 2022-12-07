@@ -8,7 +8,7 @@ on:
 
 jobs:
   preprod-deploy:
-    if: ${{ startsWith(github.ref, 'preprod_')  && github.event.pull_request.merged }}
+    if: ${{ startsWith(github.ref, 'preprod')  && github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.ref}} 
