@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo ${{ github.ref}} 
-      - run: echo "The PR was merged for lable one"
+      - run: echo "The PR was merged for lable one demo 1"
       - name: Triggering Deployment Script
         run: bash ${GITHUB_WORKSPACE}/deploy.sh
