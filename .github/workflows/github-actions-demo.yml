@@ -3,13 +3,24 @@ on:
     types:
       - closed
     branches:
-      - preprod
+      - 'preprod*'
+      - main
 
 jobs:
   preprod-deploy:
-    if: github.event.pull_request.merged == true && github.ref == 'refs/heads/prepod'
+    if: ${{ startsWith(github.ref, 'preprod')  && github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo The PR was merged
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
+      - uses: actions/checkout@v2
+      - run: echo ${{ github.ref}} 
+      - run: echo The PR was merged to preprod
+      - name: Triggering Deployment Script
+        run: bash ${GITHUB_WORKSPACE}/deploy.sh
+  prod-deploy:
+    if: ${{ github.ref == 'main' && github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${{ github.ref}} 
+      - run: echo The PR was merged to master
+      - run: ls ${{ github.workspace }}
