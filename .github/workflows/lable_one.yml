@@ -1,0 +1,17 @@
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  deploy:
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'astrozodiac') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${{ github.ref}} 
+      - run: echo "The PR was merged for lable one"
+      - name: Triggering Deployment Script
+        run: bash ${GITHUB_WORKSPACE}/deploy.sh
